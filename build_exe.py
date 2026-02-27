@@ -3,19 +3,19 @@ import os
 import sys
 
 def build_exe():
-    """Compila o app.py para executável .exe"""
+    """Compila o app.py para executavel .exe"""
     
-    print("🎮 VALORANT Instalocker - Build Script")
+    print("VALORANT Instalocker - Build Script")
     print("=" * 50)
     
-    # Opções do PyInstaller
+    # Opcoes do PyInstaller
     args = [
         'app.py',                           # Script principal
-        '--name=ValorantInstalocker',       # Nome do executável
-        '--onefile',                        # Arquivo único
+        '--name=ValorantInstalocker',       # Nome do executavel
+        '--onefile',                        # Arquivo unico
         '--windowed',                       # Sem console (GUI)
         '--clean',                          # Limpa cache
-        '--noconfirm',                      # Não confirma overwrite
+        '--noconfirm',                      # Nao confirma overwrite
         
         # Oculta imports do Streamlit
         '--hidden-import=streamlit',
@@ -54,25 +54,24 @@ def build_exe():
         '--hidden-import=requests',
     ]
     
-    print("\n📦 Iniciando build...")
-    print("   Isso pode levar alguns minutos...\n")
+    print("\nIniciando build...")
+    print("Isso pode levar alguns minutos...\n")
     
     try:
         PyInstaller.__main__.run(args)
         
         print("\n" + "=" * 50)
-        print("✅ BUILD CONCLUÍDO!")
+        print("BUILD CONCLUIDO!")
         print("=" * 50)
-        print("\n📁 Executável gerado em:")
+        print("\nExecutavel gerado em:")
         print("   dist/ValorantInstalocker.exe")
-        print("\n🚀 Como usar:")
-        print("   1. Vá para a pasta 'dist/'")
+        print("\nComo usar:")
+        print("   1. Va para a pasta 'dist/'")
         print("   2. Execute 'ValorantInstalocker.exe'")
-        print("   3. O navegador abrirá automaticamente")
-        print("\n💡 Dica: Você pode criar um atalho na área de trabalho")
+        print("   3. O navegador abrira automaticamente")
         
     except Exception as e:
-        print(f"\n❌ Erro no build: {e}")
+        print(f"\nErro no build: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
