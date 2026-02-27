@@ -6,14 +6,17 @@ def build_exe():
     print("=" * 50)
     
     args = [
-        'app.py',
+        'main.py',                          # Entry point atualizado
         '--name=ValorantInstalocker',
         '--onefile',
         '--windowed',
         '--clean',
         '--noconfirm',
         
-        # Collect all streamlit
+        # Inclui app.py como dado
+        '--add-data=app.py;.',
+        
+        # Collect all
         '--collect-all', 'streamlit',
         '--collect-all', 'altair',
         '--collect-all', 'pandas',
@@ -22,33 +25,6 @@ def build_exe():
         
         # Hidden imports
         '--hidden-import=importlib_metadata',
-        '--hidden-import=streamlit.version',
-        '--hidden-import=streamlit.runtime.scriptrunner',
-        '--hidden-import=streamlit.runtime',
-        '--hidden-import=streamlit.runtime.secrets',
-        '--hidden-import=streamlit.runtime.state',
-        '--hidden-import=streamlit.runtime.uploaded_file_manager',
-        '--hidden-import=streamlit.runtime.media_file_manager',
-        '--hidden-import=streamlit.runtime.legacy_caching',
-        '--hidden-import=streamlit.runtime.caching',
-        '--hidden-import=streamlit.runtime.forward_msg_queue',
-        '--hidden-import=streamlit.runtime.fragment',
-        '--hidden-import=streamlit.runtime.memory_media_file_storage',
-        '--hidden-import=streamlit.runtime.memory_uploaded_file_manager',
-        '--hidden-import=streamlit.runtime.pages_manager',
-        '--hidden-import=streamlit.runtime.runtime',
-        '--hidden-import=streamlit.runtime.session_manager',
-        '--hidden-import=streamlit.runtime.websocket_session_manager',
-        '--hidden-import=streamlit.elements',
-        '--hidden-import=streamlit.elements.lib',
-        '--hidden-import=streamlit.elements.lib.policies',
-        '--hidden-import=streamlit.elements.lib.column_types',
-        '--hidden-import=streamlit.proto',
-        '--hidden-import=altair',
-        '--hidden-import=pandas',
-        '--hidden-import=numpy',
-        '--hidden-import=PIL',
-        '--hidden-import=requests',
         '--hidden-import=toml',
     ]
     
