@@ -1,24 +1,28 @@
 import PyInstaller.__main__
-import os
 import sys
 
 def build_exe():
-    """Compila o app.py para executavel .exe"""
-    
     print("VALORANT Instalocker - Build Script")
     print("=" * 50)
     
-    # Opcoes do PyInstaller
     args = [
-        'app.py',                           # Script principal
-        '--name=ValorantInstalocker',       # Nome do executavel
-        '--onefile',                        # Arquivo unico
-        '--windowed',                       # Sem console (GUI)
-        '--clean',                          # Limpa cache
-        '--noconfirm',                      # Nao confirma overwrite
+        'app.py',
+        '--name=ValorantInstalocker',
+        '--onefile',
+        '--windowed',
+        '--clean',
+        '--noconfirm',
         
-        # Oculta imports do Streamlit
-        '--hidden-import=streamlit',
+        # Collect all streamlit
+        '--collect-all', 'streamlit',
+        '--collect-all', 'altair',
+        '--collect-all', 'pandas',
+        '--collect-all', 'numpy',
+        '--collect-all', 'PIL',
+        
+        # Hidden imports
+        '--hidden-import=importlib_metadata',
+        '--hidden-import=streamlit.version',
         '--hidden-import=streamlit.runtime.scriptrunner',
         '--hidden-import=streamlit.runtime',
         '--hidden-import=streamlit.runtime.secrets',
@@ -40,18 +44,12 @@ def build_exe():
         '--hidden-import=streamlit.elements.lib.policies',
         '--hidden-import=streamlit.elements.lib.column_types',
         '--hidden-import=streamlit.proto',
-        '--hidden-import=streamlit.proto.RootContainer_pb2',
-        '--hidden-import=streamlit.proto.BackMsg_pb2',
-        '--hidden-import=streamlit.proto.Block_pb2',
-        '--hidden-import=streamlit.proto.Arrow_pb2',
-        '--hidden-import=streamlit.proto.ArrowNamedDataset_pb2',
-        '--hidden-import=streamlit.proto.Balloons_pb2',
-        '--hidden-import=streamlit.proto.Snow_pb2',
         '--hidden-import=altair',
         '--hidden-import=pandas',
         '--hidden-import=numpy',
         '--hidden-import=PIL',
         '--hidden-import=requests',
+        '--hidden-import=toml',
     ]
     
     print("\nIniciando build...")
@@ -59,19 +57,12 @@ def build_exe():
     
     try:
         PyInstaller.__main__.run(args)
-        
-        print("\n" + "=" * 50)
-        print("BUILD CONCLUIDO!")
+        print("\nBUILD CONCLUIDO!")
         print("=" * 50)
-        print("\nExecutavel gerado em:")
-        print("   dist/ValorantInstalocker.exe")
-        print("\nComo usar:")
-        print("   1. Va para a pasta 'dist/'")
-        print("   2. Execute 'ValorantInstalocker.exe'")
-        print("   3. O navegador abrira automaticamente")
+        print("\nExecutavel: dist/ValorantInstalocker.exe")
         
     except Exception as e:
-        print(f"\nErro no build: {e}")
+        print(f"\nErro: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
