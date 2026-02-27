@@ -12,6 +12,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Inicialização do session_state (DEVE vir antes de qualquer uso)
+if 'selected_agents' not in st.session_state:
+    st.session_state.selected_agents = []
+
+if 'is_running' not in st.session_state:
+    st.session_state.is_running = False
+
 # CSS customizado para estilo VALORANT
 def load_css():
     st.markdown("""
@@ -215,13 +222,6 @@ st.markdown("""
     <p>Selecione seus agentes preferidos e deixe o instalocker fazer o resto</p>
 </div>
 """, unsafe_allow_html=True)
-
-# Session state
-if 'selected_agents' not in st.session_state:
-    st.session_state.selected_agents = []
-
-if 'is_running' not in st.session_state:
-    st.session_state.is_running = False
 
 # Sidebar
 with st.sidebar:
